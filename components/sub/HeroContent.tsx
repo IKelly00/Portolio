@@ -19,9 +19,9 @@ const HeroContent = () => {
           ref={ref}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex md:flex-row flex-col-reverse items-center justify-center gap-10 md:gap-0 md:px-20 px-5 mt-40 w-full z-20"
+          className="flex md:flex-row flex-col items-center justify-center gap-10 md:gap-0 md:px-20 px-5 mt-[5rem] w-full z-20"
         >
-          <div className="h-full w-full md:w-3/6 flex flex-col gap-5 justify-center text-start">
+          <div className="h-full w-full md:w-3/6 flex flex-col gap-5 justify-start text-start">
             <div className="hidden md:flex flex-row items-center md:gap-5 gap-1">
               <InView triggerOnce={false}>
                 {({ inView, ref }) => (

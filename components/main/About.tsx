@@ -51,39 +51,8 @@ const About = () => {
         </InView>
       </div>
 
-      {/* Main Split Grid Architecture */}
-      <div className="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 items-start z-[10]">
-        {/* LEFT COLUMN: Profile Graphic + Newly Added Profile Content Block */}
+      <div className="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 items-center z-[10]">
         <div className="col-span-1 md:col-span-5 flex flex-col items-center justify-center relative text-center">
-          {/* Avatar Graphic Setup */}
-          <div className="relative flex items-center justify-center w-full min-h-[280px]">
-            {/* Subtle tech background-rings mirroring the asset canvas in image_627900.jpg */}
-            <div className="absolute w-[280px] h-[280px] rounded-full border border-purple-500/10 pointer-events-none animate-[spin_120s_linear_infinite]" />
-            <div className="absolute w-[350px] h-[350px] rounded-full border border-cyan-500/5 pointer-events-none" />
-
-            <InView triggerOnce={false}>
-              {({ inView, ref }) => (
-                <motion.div
-                  ref={ref}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                  variants={slideInFromLeft(0.5)}
-                  className="relative flex items-center justify-center p-[4px] rounded-full bg-gradient-to-b from-purple-500 to-cyan-500 shadow-xl shadow-purple-500/20"
-                >
-                  <div className="bg-[#030014] p-1 rounded-full">
-                    <img
-                      src="/michael.png"
-                      alt="Michael Roy Jardinel"
-                      width={240}
-                      height={240}
-                      className="rounded-full object-cover bg-neutral-900"
-                    />
-                  </div>
-                </motion.div>
-              )}
-            </InView>
-          </div>
-
           <InView triggerOnce={false}>
             {({ inView, ref }) => (
               <motion.div
@@ -91,24 +60,75 @@ const About = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={slideInFromLeft(0.6)}
-                className="mt-6 space-y-3 z-[10] px-4"
+                className="w-full max-w-[420px] mx-auto bg-[#07041a]/60 backdrop-blur-xl border border-purple-500/15 rounded-2xl p-6 shadow-2xl shadow-purple-950/20 flex flex-col space-y-5 z-[10]"
               >
-                <h2 className="text-2xl font-bold text-white tracking-wide">
-                  Michael Roy Jardinel
-                </h2>
-                <p className="text-sm font-semibold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                  Frontend Developer
-                </p>
-                <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-purple-500/40 to-transparent mx-auto my-2" />
-                <p className="text-xs text-gray-400 max-w-[260px] mx-auto leading-relaxed">
+                <div className="inline-flex items-center gap-2 self-center md:self-start px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] uppercase tracking-widest font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  Available for Projects
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+                  <div className="relative flex items-center justify-center w-20 h-20 flex-shrink-0">
+                    <div className="absolute w-24 h-24 rounded-full border border-purple-500/10 pointer-events-none animate-[spin_120s_linear_infinite]" />
+                    <div className="absolute w-28 h-28 rounded-full border border-cyan-500/5 pointer-events-none" />
+
+                    <div className="relative flex items-center justify-center p-[2px] rounded-full bg-gradient-to-b from-purple-500 to-cyan-500 shadow-lg shadow-purple-500/20">
+                      <div className="bg-[#030014] p-0.5 rounded-full">
+                        <img
+                          src="/michael.png"
+                          alt="Michael Roy Jardinel"
+                          width={72}
+                          height={72}
+                          className="rounded-full object-cover bg-neutral-900"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1 self-center">
+                    <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-white bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                      Michael Roy Jardinel
+                    </h2>
+                    <p className="text-[11px] font-bold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">
+                      Frontend Developer
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Sleek Subtle Workspace Divider */}
+                <div className="h-[1px] w-full bg-gradient-to-r from-purple-500/0 via-purple-500/15 to-purple-500/0 sm:from-purple-500/15 sm:via-purple-500/10 sm:to-transparent" />
+
+                {/* 4. Core Bio Text */}
+                <p className="text-xs text-gray-400 leading-relaxed font-light text-center sm:text-left">
                   Specializing in React.js ecosystems, high-performance user
                   interfaces, and modular code architecture.
                 </p>
+
+                {/* 5. Micro Profile Statistics / Focus Grid */}
+                <div className="grid grid-cols-2 gap-2 pt-1 text-left text-[11px]">
+                  <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
+                    <span className="block text-gray-500 text-[9px] uppercase tracking-wider font-medium">
+                      Core Focus
+                    </span>
+                    <span className="text-gray-300 font-medium mt-0.5 block">
+                      UI Architectures
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
+                    <span className="block text-gray-500 text-[9px] uppercase tracking-wider font-medium">
+                      Main Stack
+                    </span>
+                    <span className="text-purple-300 font-medium mt-0.5 block">
+                      React Ecosystem
+                    </span>
+                  </div>
+                </div>
               </motion.div>
             )}
           </InView>
         </div>
 
+        {/* RIGHT COLUMN: Bio details & Achievements */}
         <div className="col-span-1 md:col-span-7 flex flex-col justify-center">
           <InView triggerOnce={false}>
             {({ inView, ref }) => (
@@ -146,7 +166,7 @@ const About = () => {
                   </h3>
                 </div>
 
-                {/* Structured Performance Highlight List - Enlarged padding/spacing (space-y-6) */}
+                {/* Structured Performance Highlight List */}
                 <ul className="space-y-1 md:space-y-6 lg:space-y-7 text-sm md:text-base text-gray-300 font-light max-w-xl leading-relaxed">
                   <li className="flex items-start gap-3.5">
                     <span className="text-purple-400 mt-1 flex-shrink-0">
@@ -168,7 +188,7 @@ const About = () => {
                   <li className="flex items-start gap-3.5">
                     <span className="text-cyan-400 mt-1 flex-shrink-0">✦</span>
                     <span className="text-[15px]">
-                      4+ years of engineering scalable, user-centric code
+                      4+ years of experience on scalable-code, user-centric code
                       structures for client-based deployments.
                     </span>
                   </li>
