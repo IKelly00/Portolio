@@ -2,6 +2,7 @@
 import { Socials } from "@/constants";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import Logo from "../../public/myNameLogo.png";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");

@@ -100,8 +100,10 @@ const About = () => {
 
                 {/* 4. Core Bio Text */}
                 <p className="text-xs text-gray-400 leading-relaxed font-light text-center sm:text-left">
-                  Specializing in React.js ecosystems, high-performance user
-                  interfaces, and modular code architecture.
+                  A dedicated Information Technology graduate from STI College,
+                  holding a Bachelor of Science in Information Technology.
+                  Equipped with foundational tech skills and eager to contribute
+                  to innovative software solutions.
                 </p>
 
                 {/* 5. Micro Profile Statistics / Focus Grid */}

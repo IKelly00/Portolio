@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   slideInFromLeft,
@@ -12,6 +12,33 @@ import Image from "next/image";
 import { InView } from "react-intersection-observer";
 
 const HeroContent = () => {
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTyping((prev) => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const codeLines = [
+    <>
+      <span className="text-blue-400">const</span>{" "}
+      <span className="text-yellow-300">getAchievements</span> = () =&gt;{" "}
+      <span className="text-yellow-500">&#123;</span>
+    </>,
+    <span className="ml-4">
+      <span className="text-purple-400">return</span>{" "}
+      <span className="text-blue-500">[</span>
+      <span className="text-orange-300">"Top 100 Coder"</span>,{" "}
+      <span className="text-orange-300">"Mentor"</span>
+      <span className="text-blue-500">]</span>;
+    </span>,
+    <>
+      <span className="text-yellow-500">&#125;</span>;
+    </>,
+  ];
+
   return (
     <InView triggerOnce={false}>
       {({ inView, ref }) => (
@@ -21,7 +48,7 @@ const HeroContent = () => {
           animate={inView ? "visible" : "hidden"}
           className="flex md:flex-row flex-col items-center justify-center gap-10 md:gap-0 md:px-20 px-5 mt-[5rem] w-full z-20"
         >
-          <div className="h-full w-full md:w-3/6 flex flex-col gap-5 justify-start text-start">
+          <div className="h-full w-full md:w-3/6 flex flex-col gap-6 justify-start text-start">
             <div className="hidden md:flex flex-row items-center md:gap-5 gap-1">
               <InView triggerOnce={false}>
                 {({ inView, ref }) => (
@@ -106,16 +133,54 @@ const HeroContent = () => {
                   ref={ref}
                   initial="hidden"
                   animate={inView ? "visible" : "hidden"}
-                  variants={slideInFromLeft(0.8)}
-                  className="text-sm md:text-md text-gray-400 my-5 max-w-[650px] z-30"
+                  variants={slideInFromLeft(0.5)}
+                  className="flex flex-col gap-6 mt-6 md:text-5xl text-4xl font-bold text-white max-w-[600px] w-auto h-auto z-20"
                 >
-                  <li>Finalist in the Top 100 Coders Challenge</li>
-                  <li>Ranked within the Top 9,000 on HackerRank</li>
-                  <li>Participated and Completed Hacktoberfest 2023</li>
-                  <li>Served as a Mentor in Multiple Hackathons.</li>
+                  <div
+                    ref={ref}
+                    className="w-full max-w-md mr-auto bg-[#1e1e1e] rounded-xl border border-gray-800 shadow-2xl overflow-hidden font-mono text-xs sm:text-sm"
+                  >
+                    {/* Mac OS Window Header */}
+                    <div className="flex items-center gap-2 px-4 py-3 bg-[#2d2d2d] border-b border-gray-800">
+                      <div className="w-3 h-3 rounded-full bg-red-500" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                      <div className="w-3 h-3 rounded-full bg-green-500" />
+                    </div>
+
+                    {/* Typing Code Body */}
+                    <div className="p-4">
+                      <motion.div
+                        initial="hidden"
+                        animate={inView && isTyping ? "visible" : "hidden"}
+                        transition={{ staggerChildren: 0.5 }}
+                      >
+                        {codeLines.map((line, index) => (
+                          <motion.div
+                            key={index}
+                            variants={{
+                              hidden: {
+                                width: 0,
+                                opacity: 0,
+                                transition: { duration: 0 },
+                              }, // Erases instantly on reset
+                              visible: {
+                                width: "100%",
+                                opacity: 1,
+                                transition: { duration: 2.0, ease: "linear" },
+                              },
+                            }}
+                            className="whitespace-nowrap overflow-hidden block text-gray-300"
+                          >
+                            {line}
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </div>
                 </motion.div>
               )}
             </InView>
+
             <InView triggerOnce={false}>
               {({ inView, ref }) => (
                 <motion.a
