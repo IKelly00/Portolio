@@ -21,22 +21,23 @@ const HeroContent = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // FIXED: Changed fragments to React.Fragment to support keys, and escaped the quotes
   const codeLines = [
-    <>
+    <React.Fragment key="line-1">
       <span className="text-blue-400">const</span>{" "}
       <span className="text-yellow-300">getAchievements</span> = () =&gt;{" "}
       <span className="text-yellow-500">&#123;</span>
-    </>,
-    <span className="ml-4">
+    </React.Fragment>,
+    <span className="ml-4" key="line-2">
       <span className="text-purple-400">return</span>{" "}
       <span className="text-blue-500">[</span>
-      <span className="text-orange-300">"Top 100 Coder"</span>,{" "}
-      <span className="text-orange-300">"Mentor"</span>
+      <span className="text-orange-300">&quot;Top 100 Coder&quot;</span>,{" "}
+      <span className="text-orange-300">&quot;Mentor&quot;</span>
       <span className="text-blue-500">]</span>;
     </span>,
-    <>
+    <React.Fragment key="line-3">
       <span className="text-yellow-500">&#125;</span>;
-    </>,
+    </React.Fragment>,
   ];
 
   return (
@@ -162,7 +163,7 @@ const HeroContent = () => {
                                 width: 0,
                                 opacity: 0,
                                 transition: { duration: 0 },
-                              }, // Erases instantly on reset
+                              },
                               visible: {
                                 width: "100%",
                                 opacity: 1,
