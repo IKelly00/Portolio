@@ -14,21 +14,37 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const currentHash = window.location.hash.replace("#", "");
-      if (currentHash) {
-        setActiveSection(currentHash);
-      }
+    const observerOptions = {
+      root: null,
+      rootMargin: "-30% 0px -60% 0px",
+      threshold: 0,
     };
 
-    window.addEventListener("hashchange", handleHashChange);
-    handleHashChange();
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    navItems.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="w-screen md:w-full h-[70px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-10 m-0 max-w-[1855px] items-center rounded-full">
+    <div className="w-screen md:w-full h-[70px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-[9999] px-10 m-0 max-w-[1855px] items-center rounded-full">
       <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[0px] md:px-[10px]">
+        {/* Left Section: Branding Logo */}
         <a
           href="#home"
           onClick={() => setActiveSection("home")}
@@ -42,11 +58,12 @@ const Navbar = () => {
             className="cursor-pointer hover:animate-spin w-10"
           />
           <span className="font-bold ml-[10px] block text-gray-300 z-50 md:text-lg text-xl">
-            Jkelly Dev
+            MRJ.
           </span>
         </a>
 
-        <div className="hidden w-3/6 lg:w-1/3 h-full md:flex flex-row items-center justify-between md:mx-auto lg:pr-12">
+        {/* Middle Section: Main Navigation Links */}
+        <div className="hidden w-3/6 lg:w-1/3 h-full md:flex flex-row items-center justify-between md:mx-auto lg:pr-12 md:translate-x-6">
           <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] p-[30px] py-[10px] rounded-full">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
@@ -63,33 +80,41 @@ const Navbar = () => {
                   }`}
                 >
                   {item.label}
-
-                  {isActive && (
-                    <span className="absolute -bottom-[6px] left-1/2 -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]" />
-                  )}
                 </a>
               );
             })}
           </div>
         </div>
 
-        <div className="flex flex-row gap-5 text-white">
-          {Socials.map((social) => (
-            <a
-              href={social.link}
-              key={social.name}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={social.src}
-                alt={social.name}
-                width={24}
-                height={24}
-                className="cursor-pointer hover:animate-spin"
-              />
-            </a>
-          ))}
+        {/* Right Section: Contains Download CV Button and Social Icons */}
+        <div className="flex flex-row items-center gap-5 text-white">
+          {/* Download CV Button */}
+          <a
+            href="/resume.pdf"
+            download="Michael_Roy_Jardinel_Resume.pdf"
+            className="px-3 py-1.5 text-xs font-medium border border-[#7042f88b] bg-[#0300145e] text-gray-200 rounded-full hover:bg-gradient-to-r hover:from-purple-500 hover:to-cyan-500 hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(112,66,248,0.3)] select-none text-center"
+          >
+            Download CV
+          </a>
+
+          {navItems &&
+            Socials.map((social) => (
+              <a
+                href={social.link}
+                key={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Image
+                  src={social.src}
+                  alt={social.name}
+                  width={24}
+                  height={24}
+                  className="cursor-pointer hover:scale-110 transition-transform duration-200"
+                />
+              </a>
+            ))}
         </div>
       </div>
     </div>

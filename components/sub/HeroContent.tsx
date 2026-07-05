@@ -21,22 +21,25 @@ const HeroContent = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // FIXED: Changed fragments to React.Fragment to support keys, and escaped the quotes
   const codeLines = [
     <React.Fragment key="line-1">
-      <span className="text-blue-400">const</span>{" "}
-      <span className="text-yellow-300">getAchievements</span> = () =&gt;{" "}
-      <span className="text-yellow-500">&#123;</span>
+      <span className="text-blue-400 font-[Roboto]">const</span>{" "}
+      <span className="text-yellow-300 font-[Roboto]">letsGetStarted</span> = ()
+      =&gt; <span className="text-yellow-500 font-[Roboto]">&#123;</span>
     </React.Fragment>,
     <span className="ml-4" key="line-2">
-      <span className="text-purple-400">return</span>{" "}
-      <span className="text-blue-500">[</span>
-      <span className="text-orange-300">&quot;Top 100 Coder&quot;</span>,{" "}
-      <span className="text-orange-300">&quot;Mentor&quot;</span>
-      <span className="text-blue-500">]</span>;
+      <span className="text-purple-400 font-[Roboto]">return</span>{" "}
+      <span className="text-blue-500 font-[Roboto]">[</span>
+      <span className="text-orange-300 font-[Roboto]">
+        &quot;Click&quot;
+      </span>,{" "}
+      <span className="text-orange-300 font-[Roboto]">
+        &quot;Learn More&quot;
+      </span>
+      <span className="text-blue-500 font-[Roboto]">]</span>;
     </span>,
     <React.Fragment key="line-3">
-      <span className="text-yellow-500">&#125;</span>;
+      <span className="text-yellow-500 font-[Roboto]">&#125;</span>;
     </React.Fragment>,
   ];
 

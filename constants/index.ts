@@ -111,24 +111,24 @@ export const Frontend_skill = [
     width: 50,
     height: 50,
   },
-  {
-    skill_name: "Tailwind Css",
-    Image: "/tailwind.png",
-    width: 60,
-    height: 60,
-  },
+  // {
+  //   skill_name: "Tailwind Css",
+  //   Image: "/tailwind.png",
+  //   width: 60,
+  //   height: 60,
+  // },
   {
     skill_name: "React",
     Image: "/react.png",
     width: 55,
     height: 55,
   },
-  {
-    skill_name: "Type Script",
-    Image: "/ts.png",
-    width: 50,
-    height: 50,
-  },
+  // {
+  //   skill_name: "Type Script",
+  //   Image: "/ts.png",
+  //   width: 50,
+  //   height: 50,
+  // },
   {
     skill_name: "Next js 13",
     Image: "/next.png",
@@ -139,15 +139,15 @@ export const Frontend_skill = [
 
 export const Backend_skill = [
   {
-    skill_name: "Django",
-    Image: "/django.svg",
+    skill_name: "PHP",
+    Image: "/php.png",
     width: 60,
     height: 60,
   },
 
   {
-    skill_name: "Postger SQL",
-    Image: "/postger.png",
+    skill_name: "Node JS",
+    Image: "/nodejs.svg",
     width: 50,
     height: 50,
   },
@@ -157,18 +157,18 @@ export const Backend_skill = [
     width: 45,
     height: 45,
   },
-  {
-    skill_name: "Supabase",
-    Image: "/supabase.svg",
-    width: 40,
-    height: 40,
-  },
-  {
-    skill_name: "Fire base",
-    Image: "/Firebase.png",
-    width: 35,
-    height: 35,
-  },
+  // {
+  //   skill_name: "Supabase",
+  //   Image: "/supabase.svg",
+  //   width: 40,
+  //   height: 40,
+  // },
+  // {
+  //   skill_name: "Fire base",
+  //   Image: "/Firebase.png",
+  //   width: 35,
+  //   height: 35,
+  // },
 ];
 
 export const DevTools = [
@@ -191,8 +191,8 @@ export const DevTools = [
     height: 40,
   },
   {
-    skill_name: "Railway",
-    Image: "/railway.svg",
+    skill_name: "Git",
+    Image: "/git.svg",
     width: 50,
     height: 50,
   },
@@ -202,12 +202,12 @@ export const DevTools = [
     width: 50,
     height: 50,
   },
-  {
-    skill_name: "ChatGPT",
-    Image: "/chatgpt.svg",
-    width: 50,
-    height: 50,
-  },
+  // {
+  //   skill_name: "ChatGPT",
+  //   Image: "/chatgpt.svg",
+  //   width: 50,
+  //   height: 50,
+  // },
 ];
 
 export const libraries = [
@@ -223,16 +223,16 @@ export const libraries = [
     width: 60,
     height: 60,
   },
-  {
-    skill_name: "JWT",
-    Image: "/jwt.svg",
-    width: 60,
-    height: 60,
-  },
-  {
-    skill_name: "ThreeJs",
-    Image: "/threejs.png",
-    width: 50,
-    height: 50,
-  },
+  // {
+  //   skill_name: "JWT",
+  //   Image: "/jwt.svg",
+  //   width: 60,
+  //   height: 60,
+  // },
+  // {
+  //   skill_name: "ThreeJs",
+  //   Image: "/threejs.png",
+  //   width: 50,
+  //   height: 50,
+  // },
 ];
