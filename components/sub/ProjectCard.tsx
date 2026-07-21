@@ -8,7 +8,7 @@ import { InView } from "react-intersection-observer";
 
 interface Props {
   src: string;
-  gallery?: string[]; // Added optional gallery array
+  gallery?: string[];
   title: string;
   description: string;
   sourceLink: string;
@@ -99,10 +99,22 @@ const ProjectCard = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#030014]/80 via-transparent to-transparent md:from-transparent md:via-transparent md:to-[#030014]/90 opacity-80 pointer-events-none" />
 
-              {/* Overlay prompt to hint that it's clickable */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 z-20">
-                <span className="px-4 py-2 bg-[#050312]/80 border border-purple-500/50 rounded-full text-white text-xs font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(112,66,248,0.4)]">
-                  Click to view gallery
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#030014]/80 border border-[#7042f88b] rounded-full text-xs font-medium text-gray-200 backdrop-blur-md shadow-[0_0_15px_rgba(112,66,248,0.3)] hover:border-cyan-400/60 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group cursor-pointer select-none">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                  </span>
+
+                  <span className="tracking-wide">Click to view gallery</span>
+
+                  <svg
+                    className="w-3.5 h-3.5 text-purple-400 group-hover:text-cyan-400 group-hover:rotate-12 transition-transform duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2l2.4 7.6 7.6 2.4-7.6 2.4L12 22l-2.4-7.6-7.6-2.4 7.6-2.4L12 2z" />
+                  </svg>
                 </span>
               </div>
             </div>
@@ -195,8 +207,6 @@ const ProjectCard = ({
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              // RESPONSIVE UPGRADE: Added step-up scaling heights (h-[50vh] -> sm:h-[60vh] -> md:h-[70vh])
-              // This guarantees it fits shorter mobile frames cleanly and uses max-w-4xl for wider desktops.
               className="relative w-full max-w-4xl h-[50vh] sm:h-[60vh] md:h-[70vh] bg-[#050312] border border-[#7042f88b] rounded-2xl flex flex-col shadow-[0_0_50px_rgba(112,66,248,0.3)] overflow-hidden"
             >
               {/* Modal Header */}
@@ -250,7 +260,7 @@ const ProjectCard = ({
                     alt="Active Project View"
                     fill
                     priority
-                    className="object-contain p-2 sm:p-4" // Added padding to keep image bounding boxes clean inside mobile frames
+                    className="object-contain p-2 sm:p-4"
                   />
                 </div>
               </div>
