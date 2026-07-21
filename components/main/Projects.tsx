@@ -81,6 +81,22 @@ const Projects = () => {
           demoLink="https://ikelly00.github.io/SmartStock/"
           technologies={["JavaScript", "CSS", "Node.js", "Express.js"]}
         />
+        <ProjectCard
+          src="/OneLandingPage.png"
+          gallery={[
+            "/OneAdmin.png",
+            "/OneAdminCert.png",
+            "/OneSecretary.png",
+            "/OneAccounting.png",
+            "/OneTreasurer.png",
+            "/OneCaptain.png",
+          ]}
+          title="Barangay E-Service Management  Information System"
+          description="A barangay e-service management system for handling resident records, certificates, payments, and complaints."
+          sourceLink="https://github.com/IKelly00/OneCaroyroyan"
+          demoLink="https://ikelly00.github.io/OneCaroyroyan/"
+          technologies={["JavaScript", "React.js", "CSS"]}
+        />
       </div>
     </div>
   );

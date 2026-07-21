@@ -181,7 +181,7 @@ const HeroContent = () => {
                       <span className="text-purple-400">log</span>
                       <span className="text-amber-300">(</span>
                       <span className="text-green-300">
-                        "Exploring Projects"
+                        `{"Exploring Projects"}`
                       </span>
                       <span className="text-amber-300">)</span>
                       <span className="text-gray-400">;</span>
