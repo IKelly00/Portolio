@@ -125,7 +125,7 @@ const Projects = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
         variants={slideInFromTop}
-        className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-[4rem] text-center relative z-20"
+        className="mt-20 text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-[4rem] text-center relative z-20"
       >
         What I
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">

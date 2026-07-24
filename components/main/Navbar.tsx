@@ -19,6 +19,10 @@ const Navbar = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(navRef, { once: false, amount: 0.1 });
 
+  // Refs for scroll locking
+  const isClickScrolling = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About me" },
@@ -30,13 +34,15 @@ const Navbar = () => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-30% 0px -60% 0px",
+      // Adjusted rootMargin to center of screen for better detection
+      rootMargin: "-40% 0px -40% 0px",
       threshold: 0,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        // Only update state if we are NOT currently auto-scrolling from a click
+        if (entry.isIntersecting && !isClickScrolling.current) {
           setActiveSection(entry.target.id);
         }
       });
@@ -55,15 +61,34 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Unified click handler to handle state, lock the observer, and close menus
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    setIsMobileMenuOpen(false);
+
+    // Lock the observer
+    isClickScrolling.current = true;
+
+    // Clear any existing timeouts to prevent overlapping clicks
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    // Unlock the observer after the smooth scroll finishes (1000ms is usually safe)
+    scrollTimeout.current = setTimeout(() => {
+      isClickScrolling.current = false;
+    }, 1000);
+  };
+
   // Handlers for CV actions
   const handleViewCV = () => {
-    window.open("/resume.pdf", "_blank", "noopener,noreferrer");
+    window.open("/Resume.pdf", "_blank", "noopener,noreferrer");
     setIsModalOpen(false);
   };
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
+    link.href = "/Resume.pdf";
     link.download = "Resume.pdf";
     document.body.appendChild(link);
     link.click();
@@ -87,7 +112,7 @@ const Navbar = () => {
           >
             <a
               href="#home"
-              onClick={() => setActiveSection("home")}
+              onClick={() => handleNavClick("home")}
               className="h-auto w-auto flex flex-row items-center group"
             >
               <motion.div
@@ -123,7 +148,7 @@ const Navbar = () => {
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    onClick={() => setActiveSection(item.id)}
+                    onClick={() => handleNavClick(item.id)}
                     className={`relative px-3 py-1 cursor-pointer transition-all duration-300 select-none text-sm font-medium ${
                       isActive
                         ? "text-white font-semibold"
@@ -249,10 +274,7 @@ const Navbar = () => {
                       transition={{ delay: index * 0.05 }}
                       key={item.id}
                       href={`#${item.id}`}
-                      onClick={() => {
-                        setActiveSection(item.id);
-                        setIsMobileMenuOpen(false);
-                      }}
+                      onClick={() => handleNavClick(item.id)}
                       className={`text-lg font-medium transition-all duration-300 select-none ${
                         isActive
                           ? "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-bold"

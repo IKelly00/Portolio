@@ -10,7 +10,7 @@ import { InView } from "react-intersection-observer";
 
 const SkillText = () => {
   return (
-    <div className="w-full h-auto pt-20 flex flex-col items-center justify-center">
+    <div className="w-full h-auto pt-16 flex flex-col items-center justify-center">
       <InView triggerOnce={false}>
         {({ inView, ref }) => (
           <motion.div
@@ -18,7 +18,7 @@ const SkillText = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={slideInFromTop}
-            className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 text-center z-50"
+            className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-10 text-center z-50"
           >
             What Can I
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">

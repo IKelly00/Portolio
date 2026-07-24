@@ -39,7 +39,7 @@ const About = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={slideInFromTop}
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 text-center"
+              className="mt-16 text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 text-center"
             >
               About
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">

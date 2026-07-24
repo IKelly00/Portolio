@@ -86,7 +86,7 @@ export default function Contact(): React.ReactElement {
         variants={slideInFromTop}
         className="text-center mb-16 relative z-10"
       >
-        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 mt-14">
           Contact{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
             Me
