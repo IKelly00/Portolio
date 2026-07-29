@@ -11,6 +11,7 @@ interface Props {
   gallery?: string[];
   title: string;
   description: string;
+  problemSolved: string;
   sourceLink: string;
   demoLink: string;
   technologies: string[];
@@ -41,15 +42,18 @@ const ProjectCard = ({
   gallery,
   title,
   description,
+  problemSolved,
   sourceLink,
   demoLink,
   technologies,
 }: Props) => {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeImage, setActiveImage] = useState<string>(src);
   const [isZoomed, setIsZoomed] = useState(false);
+
+  // NEW: State to handle description expansion
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const images = gallery && gallery.length > 0 ? gallery : [src];
 
@@ -85,8 +89,8 @@ const ProjectCard = ({
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={slideInFromBottom}
-            onClick={handleOpenModal} // Clicking the card opens modal
-            className="relative overflow-hidden rounded-xl shadow-lg border border-[#2A0E61]/50 bg-[#0300145e] backdrop-blur-md flex flex-col md:flex-row w-full group transition-all duration-500 hover:border-[#7042f88b] hover:shadow-[0_0_30px_rgba(112,66,248,0.2)] hover:-translate-y-1 cursor-pointer"
+            onClick={handleOpenModal}
+            className="relative h-full overflow-hidden rounded-xl shadow-lg border border-[#2A0E61]/50 bg-[#0300145e] backdrop-blur-md flex flex-col md:flex-row w-full group transition-all duration-500 hover:border-[#7042f88b] hover:shadow-[0_0_30px_rgba(112,66,248,0.2)] hover:-translate-y-1 cursor-pointer"
           >
             {/* LEFT SIDE: Image Component Wrapper */}
             <div className="relative w-full md:w-[40%] aspect-video md:aspect-auto shrink-0 overflow-hidden bg-[#0000005e]">
@@ -125,11 +129,63 @@ const ProjectCard = ({
                 <h1 className="text-xl font-bold text-white line-clamp-2 transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:via-blue-400 group-hover:to-cyan-400">
                   {title}
                 </h1>
-                <p className="mt-2 text-gray-400 text-sm leading-relaxed line-clamp-3">
-                  {description}
-                </p>
+
+                {/* MODIFIED: Expandable Description */}
+                <div className="mt-2">
+                  <p
+                    className={`text-gray-400 text-sm leading-relaxed transition-all duration-300 ${isExpanded ? "" : "line-clamp-2"}`}
+                  >
+                    {description}
+                  </p>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevents the image gallery modal from opening
+                      setIsExpanded(!isExpanded);
+                    }}
+                    className="text-cyan-400 hover:text-cyan-300 text-[11px] font-semibold mt-1.5 flex items-center gap-1 transition-colors group/btn"
+                  >
+                    {isExpanded ? "Show Less" : "Read More"}
+                    <svg
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${isExpanded ? "rotate-180" : "group-hover/btn:translate-y-0.5"}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Problem Solved Section */}
+                <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-purple-900/20 to-cyan-900/10 border border-purple-500/20 shadow-[inset_0_0_15px_rgba(168,85,247,0.05)]">
+                  <h3 className="text-[11px] uppercase tracking-wider font-bold text-purple-300 mb-1 flex items-center gap-1.5">
+                    <svg
+                      className="w-3.5 h-3.5 text-cyan-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    Problem Solved
+                  </h3>
+                  <p className="text-gray-300 text-xs leading-relaxed">
+                    {problemSolved}
+                  </p>
+                </div>
               </div>
 
+              {/* Technologies */}
               <div className="mt-4 flex flex-wrap gap-2 relative z-20">
                 {technologies.map((tech) => (
                   <span
@@ -144,12 +200,12 @@ const ProjectCard = ({
               </div>
 
               {/* Direct action button targets */}
-              <div className="relative flex flex-row gap-3 mt-6 z-30 pt-2 border-t border-[#2A0E61]/50">
+              <div className="relative flex flex-row gap-3 mt-6 z-30 pt-4 border-t border-[#2A0E61]/50">
                 <a
                   href={sourceLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()} // PREVENTS MODAL FROM OPENING WHEN CLICKING LINK
+                  onClick={(e) => e.stopPropagation()}
                   className="flex-1 text-center px-3 py-2 text-xs font-semibold tracking-wide border border-[#7042f88b] bg-transparent text-gray-300 rounded transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 hover:border-transparent hover:text-white hover:shadow-[0_0_15px_rgba(112,66,248,0.4)]"
                 >
                   Source Code
@@ -158,7 +214,7 @@ const ProjectCard = ({
                   href={demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()} // PREVENTS MODAL FROM OPENING WHEN CLICKING LINK
+                  onClick={(e) => e.stopPropagation()}
                   className="flex-1 text-center px-3 py-2 text-xs font-semibold tracking-wide border border-[#22d3ee8b] bg-transparent text-gray-300 rounded transition-all duration-300 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-blue-600 hover:border-transparent hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]"
                 >
                   Live Demo
@@ -199,7 +255,6 @@ const ProjectCard = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
-            // MODIFIED: Adjusted top padding (pt-24 sm:pt-28) to explicitly push the inner modal well below your fixed navbar layout
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030014]/95 backdrop-blur-lg p-4 pt-24 sm:pt-28 md:p-10"
           >
             <motion.div
@@ -253,7 +308,11 @@ const ProjectCard = ({
                 )}
 
                 <div
-                  className={`relative w-full h-full transition-transform duration-500 ease-in-out ${isZoomed ? "scale-[1.4] sm:scale-[1.8] md:scale-[2]" : "scale-100"}`}
+                  className={`relative w-full h-full transition-transform duration-500 ease-in-out ${
+                    isZoomed
+                      ? "scale-[1.4] sm:scale-[1.8] md:scale-[2]"
+                      : "scale-100"
+                  }`}
                 >
                   <Image
                     src={activeImage}

@@ -7,12 +7,13 @@ import {
   slideInFromTop,
 } from "@/utils/motion";
 import { InView } from "react-intersection-observer";
+import Image from "next/image";
 
 const About = () => {
   return (
     <section
       id="about"
-      className="relative flex flex-col items-center justify-center min-h-screen w-full px-6 md:px-16 lg:px-24 py-24 overflow-hidden bg-[#030014]"
+      className="relative flex flex-col items-center justify-center min-h-screen w-full px-6 md:px-16 lg:px-24 py-24 overflow-hidden bg-transparent" // Changed from bg-[#030014] to bg-transparent
     >
       {/* Background Video Layout */}
       <div className="w-full hidden md:flex items-start justify-center absolute top-0 left-0 h-full opacity-20 z-[1] pointer-events-none">
@@ -29,9 +30,8 @@ const About = () => {
 
       {/* Top Cosmic Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[180px] bg-gradient-to-b from-purple-500/20 to-transparent blur-[100px] z-[1] pointer-events-none" />
-
       {/* Section Global Header */}
-      <div className="w-full max-w-[1200px] mb-16 md:mb-20 z-[10] text-center">
+      <div className="w-full max-w-[1200px] mb-10 md:mb-12 z-[10] text-center flex flex-col items-center">
         <InView triggerOnce={false}>
           {({ inView, ref }) => (
             <motion.div
@@ -39,13 +39,27 @@ const About = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={slideInFromTop}
-              className="mt-16 text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 text-center"
+              className="flex flex-col items-center mt-8 mb-8 md:mt-8"
             >
-              About
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                {" "}
-                Me
-              </span>
+              {/* Glowing Glassmorphism Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#030014]/80 backdrop-blur-md border border-[#7042f88b] text-purple-300 text-xs uppercase tracking-widest font-semibold shadow-[0_0_15px_rgba(112,66,248,0.3)] mb-3">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                Get to Know Me
+              </div>
+
+              {/* Main Heading with Gradient Accent */}
+              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-3">
+                About{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500">
+                  Me
+                </span>
+              </h2>
+
+              {/* Supporting Subtitle */}
+              <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto font-light">
+                A glimpse into my background, technical philosophy, and what
+                drives my passion for development.
+              </p>
             </motion.div>
           )}
         </InView>
@@ -63,11 +77,13 @@ const About = () => {
                 variants={slideInFromLeft(0.6)}
                 className="relative w-full max-w-[420px] min-h-[520px] mx-auto bg-[#07041a]/40 backdrop-blur-xl border border-purple-500/20 rounded-2xl overflow-hidden shadow-2xl shadow-purple-950/30 flex flex-col justify-between p-6 group z-[10]"
               >
-                {/* 1. Card Background Image */}
-                <img
+                {/* 2. Replaced <img> with Next.js <Image /> */}
+                <Image
                   src="/michael.png"
                   alt="Michael Roy Jardinel"
-                  className="absolute inset-0 w-full h-full object-cover z-0 object-top transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 420px"
+                  className="object-cover z-0 object-top transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* 2. Premium Dark Gradient Overlay for Typography Readability */}
@@ -144,7 +160,7 @@ const About = () => {
                     ✦ Frontend Specialist
                   </span>
                   <span className="flex items-center gap-1 text-[11px] md:text-xs font-medium text-cyan-300 border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
-                    ✦ 4+ Years Experience
+                    ✦ Problem Solver
                   </span>
                   <span className="flex items-center gap-1 text-[11px] md:text-xs font-medium text-purple-300 border border-purple-500/30 bg-purple-500/10 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
                     ✦ Fullstack Fundamentals

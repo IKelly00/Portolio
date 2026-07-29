@@ -15,11 +15,9 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // InView Ref for repeating scroll animations
   const navRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(navRef, { once: false, amount: 0.1 });
 
-  // Refs for scroll locking
   const isClickScrolling = useRef(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -34,14 +32,12 @@ const Navbar = () => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      // Adjusted rootMargin to center of screen for better detection
       rootMargin: "-40% 0px -40% 0px",
       threshold: 0,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        // Only update state if we are NOT currently auto-scrolling from a click
         if (entry.isIntersecting && !isClickScrolling.current) {
           setActiveSection(entry.target.id);
         }
@@ -61,26 +57,20 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Unified click handler to handle state, lock the observer, and close menus
   const handleNavClick = (id: string) => {
     setActiveSection(id);
     setIsMobileMenuOpen(false);
 
-    // Lock the observer
     isClickScrolling.current = true;
 
-    // Clear any existing timeouts to prevent overlapping clicks
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
     }
-
-    // Unlock the observer after the smooth scroll finishes (1000ms is usually safe)
     scrollTimeout.current = setTimeout(() => {
       isClickScrolling.current = false;
     }, 1000);
   };
 
-  // Handlers for CV actions
   const handleViewCV = () => {
     window.open("/Resume.pdf", "_blank", "noopener,noreferrer");
     setIsModalOpen(false);
@@ -103,7 +93,6 @@ const Navbar = () => {
         className="w-screen md:w-full h-[70px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-[999] px-4 md:px-10 m-0 max-w-[1855px] items-center md:rounded-full"
       >
         <div className="w-full h-full flex flex-row items-center justify-between m-auto">
-          {/* Left Section: Branding Logo - Slides from Left */}
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -115,16 +104,13 @@ const Navbar = () => {
               onClick={() => handleNavClick("home")}
               className="h-auto w-auto flex flex-row items-center group"
             >
-              <motion.div
-                whileHover={{ rotate: 180 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
+              <motion.div>
                 <Image
-                  src="/logo.png"
+                  src="/myLogo.png"
                   alt="logo"
-                  width={50}
-                  height={50}
-                  className="cursor-pointer w-10"
+                  width={200}
+                  height={200}
+                  className="cursor-pointer w-8"
                 />
               </motion.div>
               <span className="font-bold ml-[10px] block text-gray-300 z-50 md:text-lg text-xl group-hover:text-cyan-400 transition-colors">
@@ -133,14 +119,14 @@ const Navbar = () => {
             </a>
           </motion.div>
 
-          {/* Middle Section: Navigation Links Capsule - Slides from Top */}
+          {/* Middle Section: Navigation Links Capsule */}
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideInFromTop}
             className="hidden md:flex flex-none items-center justify-center"
           >
-            <div className="flex items-center gap-8 h-auto border border-[#7042f861] bg-[#0300145e] px-[20px] py-[6px] rounded-full shadow-[0_0_15px_rgba(112,66,248,0.2)]">
+            <div className="flex items-center gap-8 h-auto border border-[#7042f861] bg-[#0300145e] px-[20px] py-[10px] rounded-full shadow-[0_0_15px_rgba(112,66,248,0.2)]">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
 
@@ -155,7 +141,6 @@ const Navbar = () => {
                         : "text-gray-300 hover:text-purple-400"
                     }`}
                   >
-                    {/* Sliding Active Pill Background */}
                     {isActive && (
                       <motion.div
                         layoutId="activeSectionGlow"
@@ -174,7 +159,7 @@ const Navbar = () => {
             </div>
           </motion.div>
 
-          {/* Right Section: Buttons & Socials - Slides from Right */}
+          {/* Right Section: Buttons & Socials */}
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}

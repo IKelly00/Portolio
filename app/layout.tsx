@@ -9,8 +9,11 @@ import Contact from "@/components/main/Contact";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MRJ Portfolio",
+  title: "Michael's Website Portfolio",
   description: "My portfolio",
+  icons: {
+    icon: "/myLogo.png",
+  },
 };
 
 export default function RootLayout({
