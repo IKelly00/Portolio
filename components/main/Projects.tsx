@@ -38,9 +38,10 @@ const PROJECTS: ProjectItem[] = [
     demoLink: "https://ikelly00.github.io/Naga-Parochial-Voting-System/",
     technologies: [
       "React.js",
+      "Vite",
       "Node.js",
       "Express.js",
-      "Vite",
+      "MySQL",
       "CSS Module",
       "Framer Motion",
     ],
@@ -55,7 +56,14 @@ const PROJECTS: ProjectItem[] = [
       "Bridged the gap between customers and multiple local vendors by unifying scattered, individual ordering methods into one seamless platform.",
     sourceLink: "https://github.com/IKelly00/Dishora",
     demoLink: "https://dishora.shop/",
-    technologies: ["JavaScript", "Bootstrap", "Vite", "PHP", "Laravel"],
+    technologies: [
+      "JavaScript",
+      "Bootstrap",
+      "Vite",
+      "PHP",
+      "Laravel",
+      "Cloudflare",
+    ],
   },
   {
     src: "/smartstock.png",
@@ -73,7 +81,7 @@ const PROJECTS: ProjectItem[] = [
       "Eliminated messy manual record-keeping by providing a centralized dashboard for SMEs to accurately track inventory and sales in real-time.",
     sourceLink: "https://github.com/IKelly00/SmartStock",
     demoLink: "https://ikelly00.github.io/SmartStock/",
-    technologies: ["JavaScript", "CSS", "Node.js", "Express.js"],
+    technologies: ["JavaScript", "CSS", "Node.js", "Express.js", "MySQL"],
   },
   {
     src: "/OneLandingPage.png",
@@ -92,7 +100,15 @@ const PROJECTS: ProjectItem[] = [
       "Digitized inefficient paper-bound local governance, creating a streamlined portal for fast certificate issuance and organized complaint tracking.",
     sourceLink: "https://github.com/IKelly00/OneCaroyroyan",
     demoLink: "https://ikelly00.github.io/OneCaroyroyan/",
-    technologies: ["JavaScript", "React.js", "CSS", "Node.js", "Express.js"],
+    technologies: [
+      "JavaScript",
+      "React.js",
+      "Vite",
+      "CSS",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+    ],
   },
   {
     src: "/GeminiLight.png",
@@ -106,8 +122,8 @@ const PROJECTS: ProjectItem[] = [
     demoLink: "https://gemini-clone-six-phi.vercel.app/",
     technologies: [
       "JavaScript",
-      "Tailwind CSS",
       "React.js",
+      "Tailwind",
       "Google AI Studio",
       "Gemini API",
     ],
@@ -176,14 +192,12 @@ const Projects = () => {
           engineered to solve complex, real-world problems.
         </motion.p>
       </div>
-      {/* ------------------------------------------- */}
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 px-4 md:px-8 w-full max-w-[1400px] mx-auto">
         {PROJECTS.map((project, index) => {
           const isEven = index % 2 === 0;
 
-          // Motion variant selection (Left for even, Right for odd)
           const selectedVariant = isEven
             ? slideInFromLeft(0.2)
             : slideInFromRight(0.2);

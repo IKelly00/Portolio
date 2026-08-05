@@ -21,7 +21,7 @@ const techIcons: Record<string, string> = {
   "React.js": "/react.png",
   React: "/react.png",
   "Next.js": "/next.png",
-  "Tailwind CSS": "/tailwind.png",
+  Tailwind: "/tailwind.png",
   "Framer Motion": "/framer.png",
   Vite: "/vite.svg",
   JavaScript: "/js.png",
@@ -35,6 +35,8 @@ const techIcons: Record<string, string> = {
   "Vue.js": "/Vue.svg",
   Laravel: "/Laravel.svg",
   "Express.js": "/express.svg",
+  Cloudflare: "/cloudflare.svg",
+  MySQL: "/mysql.svg",
 };
 
 const ProjectCard = ({
@@ -217,7 +219,7 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   className="flex-1 text-center px-3 py-2 text-xs font-semibold tracking-wide border border-[#22d3ee8b] bg-transparent text-gray-300 rounded transition-all duration-300 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-blue-600 hover:border-transparent hover:text-white hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]"
                 >
-                  Live Demo
+                  Take a look!
                 </a>
               </div>
             </div>
