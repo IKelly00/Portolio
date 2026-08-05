@@ -92,7 +92,7 @@ const PROJECTS: ProjectItem[] = [
       "Digitized inefficient paper-bound local governance, creating a streamlined portal for fast certificate issuance and organized complaint tracking.",
     sourceLink: "https://github.com/IKelly00/OneCaroyroyan",
     demoLink: "https://ikelly00.github.io/OneCaroyroyan/",
-    technologies: ["JavaScript", "React.js", "CSS"],
+    technologies: ["JavaScript", "React.js", "CSS", "Node.js", "Express.js"],
   },
   {
     src: "/GeminiLight.png",
@@ -103,7 +103,7 @@ const PROJECTS: ProjectItem[] = [
     problemSolved:
       "Demonstrated the practical implementation of complex AI API integrations, handling real-time streaming and multimodal data within a React environment.",
     sourceLink: "https://github.com/IKelly00/GeminiClone",
-    demoLink: "https://ikelly00.github.io/GeminiClone/",
+    demoLink: "https://gemini-clone-six-phi.vercel.app/",
     technologies: [
       "JavaScript",
       "Tailwind CSS",

@@ -103,7 +103,7 @@ const About = () => {
                       Michael Roy Jardinel
                     </h2>
                     <p className="text-xs font-bold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
-                      Frontend Developer
+                      Full-Stack Developer
                     </p>
                   </div>
 
@@ -157,13 +157,13 @@ const About = () => {
                 {/* Visual Pill Badges / Tags */}
                 <div className="flex flex-wrap gap-3">
                   <span className="flex items-center gap-1 text-[11px] md:text-xs font-medium text-purple-300 border border-purple-500/30 bg-purple-500/10 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
-                    ✦ Frontend Specialist
+                    ✦ Frontend & Backend
                   </span>
                   <span className="flex items-center gap-1 text-[11px] md:text-xs font-medium text-cyan-300 border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
-                    ✦ Problem Solver
+                    ✦ End-to-End Solutions
                   </span>
                   <span className="flex items-center gap-1 text-[11px] md:text-xs font-medium text-purple-300 border border-purple-500/30 bg-purple-500/10 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
-                    ✦ Fullstack Fundamentals
+                    ✦ Systems & Database Design
                   </span>
                 </div>
 

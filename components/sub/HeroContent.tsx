@@ -21,25 +21,20 @@ const HeroContent = () => {
   useEffect(() => {
     const sequence = async () => {
       while (true) {
-        // Line 1 types out
         setCursorPosition({ line: 1, visible: true });
         setVisibleLines(1);
         await new Promise((r) => setTimeout(r, 600));
 
-        // Line 2 types out
         setCursorPosition({ line: 2, visible: true });
         setVisibleLines(2);
         await new Promise((r) => setTimeout(r, 1850));
 
-        // Line 3 types out
         setCursorPosition({ line: 3, visible: true });
         setVisibleLines(3);
         await new Promise((r) => setTimeout(r, 1000));
 
-        // Idle state at completion
         await new Promise((r) => setTimeout(r, 4000));
 
-        // Reset system
         setVisibleLines(0);
         setCursorPosition({ line: 1, visible: false });
         await new Promise((r) => setTimeout(r, 800));
@@ -65,7 +60,7 @@ const HeroContent = () => {
               variants={slideInFromTop}
               className="flex flex-wrap items-center gap-3 w-full z-20"
             >
-              {["Aspiring Fullstack", "Web Developer", "Team Lead"].map(
+              {["Full Stack Developer", "Web Developer", "IT Graduate"].map(
                 (text, idx) => (
                   <div
                     key={idx}
